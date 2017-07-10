@@ -59,6 +59,10 @@ describe Sentimental do
     it 'returns :positive when -threshold < score < threshold' do
       expect(analyzer.sentiment('je en sais pas')).to be :neutral
     end
+
+    it 'returns the average sentiment of an array of strings' do
+      expect(analyzer.sentiment(['I love ruby <3', 'ruby rocks!'])).to be :positive
+    end
   end
 
   describe '#classify' do
