@@ -26,7 +26,11 @@ class Sentimental
   end
 
   def sentiment(string)
-    score = score(string)
+    if string.is_a? Array
+      score = string.inject(0.0) { |memo, s| memo += score(s) } / string.length
+    else
+      score = score(string)
+    end
 
     if score < (-1 * threshold)
       :negative
